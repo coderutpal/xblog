@@ -5,6 +5,7 @@
     <!-- Basic Page Info -->
     <meta charset="utf-8" />
     <title>@yield('pageTitle')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('back/vendors/images/apple-touch-icon.png') }}" />
@@ -17,14 +18,26 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <!-- CSS -->
+
+    <!-- Core CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/styles/core.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/styles/icon-font.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/styles/style.css') }}" />
+
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/styles/style.css') }}" />
+
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Wysihtml5 CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.min.css">
+
+    @kropifyStyles
     @stack('stylesheets')
 </head>
+
 
 <body>
     {{-- <div class="pre-loader">
@@ -354,15 +367,27 @@
         </div>
     </div>
 
-    <!-- js -->
+    <!-- jQuery (must be loaded first) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- Load Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <!-- Load Wysihtml5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/amd/wysihtml5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.all.min.js">
+    </script>
+
+    <!-- Your JS Files (load after jQuery and plugins) -->
     <script src="{{ asset('back/vendors/scripts/core.js') }}"></script>
     <script src="{{ asset('back/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('back/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('back/vendors/scripts/layout-settings.js') }}"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Toastr JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- Laravel Toastr Event Listener -->
     <script>
         window.addEventListener('showToastr', function(event) {
             toastr.options = {
@@ -383,6 +408,7 @@
         });
     </script>
 
+    @kropifyScripts
     @stack('scripts')
 </body>
 
