@@ -71,7 +71,7 @@
 
             <p>If you did not request this change, please contact support immediately.</p>
 
-            <p>Thank you,<br>Your Website Team</p>
+            <p>Thank you,<br>Xblog Team</p>
         </div>
 
         <div class="footer">
