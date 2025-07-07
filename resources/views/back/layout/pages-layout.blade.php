@@ -8,9 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Site favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('back/vendors/images/apple-touch-icon.png') }}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('back/vendors/images/favicon-32x32.png') }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('back/vendors/images/favicon-16x16.png') }}" />
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="{{ asset('images/site/') }}/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -26,6 +25,9 @@
 
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!--  Croppie CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
 
     <!-- Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
@@ -281,10 +283,11 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="{{ route('admin.dashboard') }}">
-                <img src="{{ asset('back/vendors/images/deskapp-logo.svg') }}" alt="" class="dark-logo" />
-                <img src="{{ asset('back/vendors/images/deskapp-logo-white.svg') }}" alt=""
-                    class="light-logo" />
+            <a href="/">
+                <img src="{{ asset('images/site') }}/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}"
+                    alt="" class="dark-logo site_logo" />
+                <img src="{{ asset('images/site') }}/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}"
+                    alt="" class="light-logo site_logo" />
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -342,7 +345,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow">
                             <span class="micon fa fa-cogs"></span>
                             <span class="mtext">General</span>
                         </a>
@@ -372,6 +375,9 @@
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!--  Croppie Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 
     <!-- Load Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
