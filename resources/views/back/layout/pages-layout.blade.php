@@ -9,7 +9,8 @@
 
     <!-- Site favicon -->
     <link rel="icon" type="image/png" sizes="96x96"
-        href="{{ asset('images/site/') }}/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}" />
+        href="{{ asset('images/site/') }}/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}"
+        class="site_favicon" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
