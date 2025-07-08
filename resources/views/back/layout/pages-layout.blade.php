@@ -27,8 +27,8 @@
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <!--  Croppie CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
+    <!--  Croppie Image Uploader CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/croppieImageUploader/css/croppie.min.css') }}" />
 
     <!-- Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
@@ -377,8 +377,9 @@
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <!--  Croppie Js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <!--  Croppie Image Uploader Js -->
+    <script src="{{ asset('plugins/croppieImageUploader/js/croppie.min.js') }}"></script>
+    <script src="{{ asset('plugins/croppieImageUploader/js/croppieImageUploader.js') }}"></script>
 
     <!-- Load Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
