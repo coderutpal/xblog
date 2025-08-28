@@ -30,6 +30,12 @@
     <!--  Croppie Image Uploader CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/croppieImageUploader/css/croppie.min.css') }}" />
 
+    <!--  jquery-ui-1.14.1 CSS -->
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.14.1/jquery-ui.min.css') }}" /> --}}
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.14.1/jquery-ui.structure.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.14.1/jquery-ui.theme.min.css') }}" />
+
     <!-- Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
@@ -284,7 +290,7 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="/">
+            <a href="{{ route('admin.dashboard') }}">
                 <img src="{{ asset('images/site') }}/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}"
                     alt="" class="dark-logo site_logo" />
                 <img src="{{ asset('images/site') }}/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}"
@@ -304,7 +310,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.categories') }}" class="dropdown-toggle no-arrow">
                             <span class="micon fa fa-list"></span><span class="mtext">Categories</span>
                         </a>
                     </li>
@@ -371,8 +377,11 @@
         </div>
     </div>
 
-    <!-- jQuery (must be loaded first) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Core JS (Note: jQuery included in core.js) -->
+    <script src="{{ asset('back/vendors/scripts/core.js') }}"></script>
+    <script src="{{ asset('back/vendors/scripts/script.min.js') }}"></script>
+    <script src="{{ asset('back/vendors/scripts/process.js') }}"></script>
+    <script src="{{ asset('back/vendors/scripts/layout-settings.js') }}"></script>
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -381,6 +390,12 @@
     <script src="{{ asset('plugins/croppieImageUploader/js/croppie.min.js') }}"></script>
     <script src="{{ asset('plugins/croppieImageUploader/js/croppieImageUploader.js') }}"></script>
 
+    <!--  jquery-ui-1.14.1 Js -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <!--  SweetAlert2 Js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Load Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
@@ -388,12 +403,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/amd/wysihtml5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.all.min.js">
     </script>
-
-    <!-- Your JS Files (load after jQuery and plugins) -->
-    <script src="{{ asset('back/vendors/scripts/core.js') }}"></script>
-    <script src="{{ asset('back/vendors/scripts/script.min.js') }}"></script>
-    <script src="{{ asset('back/vendors/scripts/process.js') }}"></script>
-    <script src="{{ asset('back/vendors/scripts/layout-settings.js') }}"></script>
 
     <!-- Laravel Toastr Event Listener -->
     <script>

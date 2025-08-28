@@ -9,6 +9,7 @@ use App\Models\User;
 use illuminate\Support\Facades\File;
 use SawaStacks\Utils\Kropify;
 use App\Models\GeneralSetting;
+use Illuminate\Support\Arr;
 
 class AdminController extends Controller
 {
@@ -230,4 +231,15 @@ class AdminController extends Controller
     // Update Favicon method using "base64 string" end [Method1]
 
     // GENERAL SETTING END
+
+    // CATEGORIES METHOD START
+    public function categoriesPage(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Categories'
+        ];
+
+        return view('back.pages.categories', $data);
+    }
+    // CATEGORIES METHOD END
 }
