@@ -24,7 +24,7 @@
                                 <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
                                     <td>{{ $item->ordering }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>-</td>
+                                    <td>{{ $item->children->count() }}</td>
                                     <td>
                                         <div class="table-action">
                                             <a href="javascript:;" wire:click="editParentCategory({{ $item->id }})"
@@ -59,7 +59,7 @@
                         <h4 class="text-4">Categories</h4>
                     </div>
                     <div class="pull-right">
-                        <a href="" class="btn btn-primary">Add Category</a>
+                        <a href="javascript:;" wire:click="addCategory()" class="btn btn-primary">Add Category</a>
                     </div>
                 </div>
                 <div class="table-responsive mt-4">
@@ -71,23 +71,34 @@
                             <th>Total posts</th>
                             <th>Actions</th>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>P. Cat 1</td>
-                                <td>Any</td>
-                                <td>3</td>
-                                <td>
-                                    <div class="table-action">
-                                        <a href="" class="text-primary mx-2">
-                                            <i class="dw dw-edit2"></i>
-                                        </a>
-                                        <a href="" class="text-danger mx-2">
-                                            <i class="dw dw-delete-3"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody id="sortable_categories">
+                            @forelse ($categories as $item)
+                                <tr data-index="{{ $item->id }}" data-ordering="{{ $item->ordering }}">
+                                    <td>{{ $item->ordering }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ !is_null($item->parent_category) ? $item->parent_category->name : '-' }}
+                                    </td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="table-action">
+                                            <a href="javascript:;" wire:click="editCategory({{ $item->id }})"
+                                                class="text-primary mx-2">
+                                                <i class="dw dw-edit2"></i>
+                                            </a>
+                                            <a href="javascript:;" wire:click="deleteCategory({{ $item->id }})"
+                                                class="text-danger mx-2">
+                                                <i class="dw dw-delete-3"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">
+                                        <span class="text-danger">No item found!</span>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -109,7 +120,7 @@
                 </div>
                 <div class="modal-body">
                     @if ($isUpdateParentCategoryMode)
-                        <input type="hidden" wire:modal="pcategory_id">
+                        <input type="hidden" wire:model="pcategory_id">
                     @endif
                     <div class="form-group">
                         <label for=""><b>Parent Category Name</b></label>
@@ -126,6 +137,55 @@
                     </button>
                     <button type="submit" class="btn btn-primary">
                         {{ $isUpdateParentCategoryMode ? ' Update' : 'Add' }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div wire:ignore.self class="modal fade" id="categoryModal" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <form wire:submit="{{ $isUpdateCategoryMode ? 'updateCategory()' : 'createCategory()' }}"
+                class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">
+                        {{ $isUpdateCategoryMode ? 'Update Category' : 'Add Category' }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if ($isUpdateCategoryMode)
+                        <input type="hidden" wire:model="category_id">
+                    @endif
+                    <div class="form-group">
+                        <label for=""><b>Parent Category</b>:</label>
+                        <select wire:model="parent" class="custom-select">
+                            <option value="0">Uncategorized</option>
+                            @foreach ($pcategories as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('parent')
+                            <span class="text-danger ml-1 mt-3">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for=""><b>Category Name</b></label>
+                        <input type="text" class="form-control" wire:model="category_name"
+                            placeholder="Enter your category name">
+                        @error('category_name')
+                            <span class="text-danger ml-1 mt-3">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        {{ $isUpdateCategoryMode ? ' Update' : 'Add' }}
                     </button>
                 </div>
             </form>

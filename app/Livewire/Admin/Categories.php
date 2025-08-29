@@ -14,9 +14,14 @@ class Categories extends Component
     public $isUpdateParentCategoryMode = false;
     public $pcategory_id, $pcategory_name;
 
+    public $isUpdateCategoryMode = false;
+    public $category_id, $parent = 0, $category_name;
+
     protected $listeners = [
+        'updateParentCategoryOrdering',
+        'confirmDeleteParentCategory',
         'updateCategoryOrdering',
-        'confirmDeleteParentCategory'
+        'confirmDeleteCategory',
     ];
 
     public function addParentCategory()
@@ -43,7 +48,7 @@ class Categories extends Component
 
         if ($saved) {
             $this->hideParentCategoryModalForm();
-            $this->dispatch('showToastr', type: 'success', message: 'Category has been added successfully');
+            $this->dispatch('showToastr', type: 'success', message: 'Parent Category has been added successfully');
         } else {
             $this->dispatch('showToastr', type: 'error', message: 'Something went wrong');
         }
@@ -82,8 +87,8 @@ class Categories extends Component
         }
     }
 
-    /** Update parent categoy order/sorting*/
-    public function updateCategoryOrdering($positions)
+    /** Update parent category order/sorting*/
+    public function updateParentCategoryOrdering($positions)
     {
         foreach ($positions as $position) {
             $index = $position[0];
@@ -127,10 +132,124 @@ class Categories extends Component
         $this->pcategory_id = $this->pcategory_name = null;
     }
 
+    // Category started
+    public function addCategory()
+    {
+        $this->category_id = null;
+        $this->category_name = null;
+        $this->parent = 0;
+        $this->isUpdateCategoryMode = false;
+        $this->showCategoryModalForm();
+    }
+
+    public function showCategoryModalForm()
+    {
+        $this->resetErrorBag();
+        $this->dispatch('showCategoryModalForm');
+    }
+
+    public function hideCategoryModalForm()
+    {
+        $this->dispatch('hideCategoryModalForm');
+        $this->isUpdateCategoryMode = false;
+        $this->category_id = $this->category_name = null;
+        $this->parent = 0;
+    }
+    public function createCategory()
+    {
+        $this->validate([
+            'category_name' => 'required|unique:categories,name'
+        ], [
+            'category_name.required' => 'Category field is required',
+            'category_name.unique' => 'Category is already exists'
+        ]);
+
+        /** Store new category */
+        $category = new Category();
+        $category->parent = $this->parent;
+        $category->name = $this->category_name;
+        $saved = $category->save();
+
+        if ($saved) {
+            $this->hideCategoryModalForm();
+            $this->dispatch('showToastr', type: 'success', message: 'Category has been added successfully');
+        } else {
+            $this->dispatch('showToastr', type: 'error', message: 'Something went wrong');
+        }
+    }
+
+    public function editCategory($id)
+    {
+        $category = Category::findOrFail($id);
+        $this->category_id = $category->id;
+        $this->parent = $category->parent;
+        $this->category_name = $category->name;
+        $this->isUpdateCategoryMode = true;
+        $this->showCategoryModalForm();
+    }
+
+    public function updateCategory()
+    {
+        $category = Category::findOrFail($this->category_id);
+        $this->validate([
+            'category_name' => 'required|unique:categories,name,' . $category->id
+        ], [
+            'category_name.required' => 'Category field is required',
+            'category_name.unique' => 'Category name is already taken'
+        ]);
+
+        $category->name = $this->category_name;
+        $category->parent = $this->parent;
+        $category->slug = null;
+        $updated = $category->save();
+
+        if ($updated) {
+            $this->hideCategoryModalForm();
+            $this->dispatch('showToastr', type: 'success',  message: 'Category updated successfully');
+        } else {
+            $this->dispatch('showToastr', type: 'error', message: 'Somthing went wrong!');
+        }
+    }
+
+    /** Update category order/sorting*/
+    public function updateCategoryOrdering($positions)
+    {
+        foreach ($positions as $position) {
+            $index = $position[0];
+            $new_position = $position[1];
+            Category::where('id', $index)->update([
+                'ordering' => $new_position
+            ]);
+        }
+        $this->dispatch('showToastr', type: 'success', message: 'Category Order updated!');
+    }
+
+    /** Delete parent category */
+    public function deleteCategory($id)
+    {
+        $this->dispatch('deleteCategory', ['id' => $id]);
+    }
+
+    public function confirmDeleteCategory($id)
+    {
+        $category = Category::findOrFail($id);
+
+        $delete = $category->delete();
+
+        if ($delete) {
+            $this->dispatch('showToastr', type: 'success', message: 'Category item has been deleted!');
+        } else {
+            $this->dispatch('showToastr', type: 'error', message: 'Something went wrong!');
+        }
+    }
+
+    // Category end
+
     public function render()
     {
         return view('livewire.admin.categories', [
-            'pcategories' => ParentCategory::orderBy('ordering', 'asc')->get()
+            'pcategories' => ParentCategory::orderBy('ordering', 'asc')->get(),
+            'categories' => Category::orderBy('ordering', 'asc')->get()
         ]);
     }
 }
