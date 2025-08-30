@@ -49,6 +49,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="d-block mt-1 text-center">
+                    {{ $pcategories->links('livewire::simple-bootstrap') }}
+                </div>
             </div>
         </div>
 
@@ -101,6 +104,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-block mt-1 text-center">
+                    {{ $categories->links('livewire::simple-bootstrap') }}
                 </div>
             </div>
         </div>
@@ -163,10 +169,11 @@
                         <label for=""><b>Parent Category</b>:</label>
                         <select wire:model="parent" class="custom-select">
                             <option value="0">Uncategorized</option>
-                            @foreach ($pcategories as $item)
+                            @foreach ($allParentCategories as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
+
                         @error('parent')
                             <span class="text-danger ml-1 mt-3">{{ $message }}</span>
                         @enderror

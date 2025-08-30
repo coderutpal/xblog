@@ -5,17 +5,21 @@ namespace App\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\ParentCategory;
-use GuzzleHttp\Psr7\Message;
+use Livewire\WithPagination;
 
 use function PHPSTORM_META\type;
 
 class Categories extends Component
 {
+    use WithPagination;
     public $isUpdateParentCategoryMode = false;
     public $pcategory_id, $pcategory_name;
 
     public $isUpdateCategoryMode = false;
     public $category_id, $parent = 0, $category_name;
+
+    public $pcategoriesPerPage = 5;
+    public $categoriesPerPage = 10;
 
     protected $listeners = [
         'updateParentCategoryOrdering',
@@ -110,6 +114,15 @@ class Categories extends Component
     {
         $pcategory = ParentCategory::findOrFail($id);
 
+        // Check if this parent category as Children
+        if ($pcategory->children->count() > 0) {
+            foreach ($pcategory->children as $category) {
+                // Release a category 
+                Category::where('id', $category->id)->update(['parent' => 0]);
+            }
+        }
+
+        // Delete Parent Category
         $delete = $pcategory->delete();
 
         if ($delete) {
@@ -248,8 +261,10 @@ class Categories extends Component
     public function render()
     {
         return view('livewire.admin.categories', [
-            'pcategories' => ParentCategory::orderBy('ordering', 'asc')->get(),
-            'categories' => Category::orderBy('ordering', 'asc')->get()
+            'pcategories' => ParentCategory::orderBy('ordering', 'asc')->paginate($this->pcategoriesPerPage, ['*'], 'parent_category_page'),
+            // Dropdown uses all parent categories ignoring pagination
+            'allParentCategories' => ParentCategory::orderBy('ordering', 'asc')->get(),
+            'categories' => Category::orderBy('ordering', 'asc')->paginate($this->categoriesPerPage, ['*'], 'category_page')
         ]);
     }
 }
