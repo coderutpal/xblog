@@ -13,7 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'preventBackHistory' => App\Http\Middleware\PreventBackHistory::class
+            'preventBackHistory' => App\Http\Middleware\PreventBackHistory::class,
+            'onlySupperAdmin' => App\Http\Middleware\OnlySupperAdmin::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

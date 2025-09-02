@@ -304,16 +304,20 @@
             <div class="sidebar-menu">
                 <ul id="accordion-menu">
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                             <span class="micon fa fa-home"></span><span class="mtext">Home</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{ route('admin.categories') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon fa fa-list"></span><span class="mtext">Categories</span>
-                        </a>
-                    </li>
+                    @if (auth()->user()->type == 'supperAdmin')
+                        <li>
+                            <a href="{{ route('admin.categories') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.categories') ? 'active' : '' }}">
+                                <span class="micon fa fa-list"></span><span class="mtext">Categories</span>
+                            </a>
+                        </li>
+                    @endif
 
 
                     <li class="dropdown">
@@ -325,15 +329,19 @@
                             <li><a href="#">Posts</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon fa fa-shopping-bag"></span><span class="mtext">Shop</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="bootstrap-icon.html">New product</a></li>
-                            <li><a href="font-awesome.html">All products</a></li>
-                        </ul>
-                    </li>
+
+                    @if (auth()->user()->type == 'supperAdmin')
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle">
+                                <span class="micon fa fa-shopping-bag"></span><span class="mtext">Shop</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="bootstrap-icon.html">New product</a></li>
+                                <li><a href="font-awesome.html">All products</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
                     <li>
                         <a href="invoice.html" class="dropdown-toggle no-arrow">
                             <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span>
@@ -346,17 +354,22 @@
                         <div class="sidebar-small-cap">Settings</div>
                     </li>
                     <li>
-                        <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('admin.profile') }}"
+                            class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }}">
                             <span class="micon fa fa-user-circle"></span>
                             <span class="mtext">Profile</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.settings') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon fa fa-cogs"></span>
-                            <span class="mtext">General</span>
-                        </a>
-                    </li>
+
+                    @if (auth()->user()->type == 'supperAdmin')
+                        <li>
+                            <a href="{{ route('admin.settings') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
+                                <span class="micon fa fa-cogs"></span>
+                                <span class="mtext">General</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
