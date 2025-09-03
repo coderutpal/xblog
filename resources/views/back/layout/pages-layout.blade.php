@@ -321,12 +321,15 @@
 
 
                     <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
+                        <a href="javascript:;"
+                            class="dropdown-toggle {{ Route::is('admin.addPost') || Route::is('admin.posts') ? 'active' : '' }}">
                             <span class="micon fa fa-newspaper-o"></span><span class="mtext"> Posts </span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="#">New</a></li>
-                            <li><a href="#">Posts</a></li>
+                            <li><a href="{{ route('admin.add_post') }}"
+                                    class="{{ Route::is('admin.add_post') ? 'active' : '' }}">New</a></li>
+                            <li><a href="{{ route('admin.posts') }}"
+                                    {{ Route::is('admin.posts') ? 'active' : '' }}>Posts</a></li>
                         </ul>
                     </li>
 
