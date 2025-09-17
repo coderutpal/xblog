@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Helpers\Cmail;
+use App\Helpers\CMail;
 use App\Models\UserSocialLink;
 
 class Profile extends Component
@@ -112,7 +112,7 @@ class Profile extends Component
                 'body' => $mail_body
             );
 
-            Cmail::send($mail_config);
+            CMail::send($mail_config);
 
             // Logout and redirect to the login page
             auth()->logout();

@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for=""><b>Content</b>:</label>
-                            <textarea name="content" id="" cols="30" rows="10" class="form-control"
+                            <textarea name="content" id="content" cols="30" rows="10" class="ckeditor form-control"
                                 placeholder="Enter post content here"></textarea>
                             <span class="text-danger error-text content_error"></span>
                         </div>
@@ -112,6 +112,7 @@
 @endpush
 @push('scripts')
     <script src="{{ asset('back/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 @endpush
 @push('scripts')
     <!-- Preview featured image, file type and ractangle size validation js  -->
@@ -123,9 +124,9 @@
             const preview = document.getElementById('featured_image_preview');
 
             if (file) {
-                const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
                 if (!allowedTypes.includes(file.type)) {
-                    errorText.textContent = 'Invalid file type. Only JPG, JPEG, PNG, GIF allowed.';
+                    errorText.textContent = 'Invalid file type. Only JPG, JPEG, PNG, WEBP allowed.';
                     preview.style.display = 'none';
                     return;
                 }
@@ -156,7 +157,9 @@
                 e.preventDefault();
 
                 let form = this;
+                let content = CKEDITOR.instances.content.getData();
                 let formData = new FormData(form);
+                formData.append('content', content);
 
                 $.ajax({
                     url: form.action,
@@ -176,6 +179,7 @@
                                 timer: 2000
                             });
                             form.reset();
+                            CKEDITOR.instances.content.setData('');
                             $("#featured_image_preview").hide();
                         } else {
                             Swal.fire({

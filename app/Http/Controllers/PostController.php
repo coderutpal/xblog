@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ParentCategory;
 use App\Models\Category;
 use App\Models\Post;
+use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -45,47 +47,61 @@ class PostController extends Controller
             'title' => 'required|unique:posts,title',
             'content' => 'required',
             'category' => 'required|exists:categories,id',
-            'featured_image' => 'required|image|mimes:jpg,jpeg,png|max:1024',
+            'featured_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        //Create post and show SweetAlert notification instead of Toaster Notification
         if ($request->hasFile('featured_image')) {
-            $path = 'images/posts/';
+            $path = public_path('images/posts/');
+            $thumb_path = public_path('images/posts/thumbs/');
+            $resized_path = public_path('images/posts/resized/');
+
             $file = $request->file('featured_image');
             $filename = $file->getClientOriginalName();
             $new_filename = uniqid() . '_' . $filename;
 
-            //Upload featured image
-            $upload = $file->move(public_path($path), $new_filename);
+            // ensure directories exist
+            if (!File::isDirectory($path)) File::makeDirectory($path, 0777, true);
+            if (!File::isDirectory($thumb_path)) File::makeDirectory($thumb_path, 0777, true);
+            if (!File::isDirectory($resized_path)) File::makeDirectory($resized_path, 0777, true);
 
-            if ($upload) {
-                $post = new Post();
-                $post->author_id = auth()->id();
-                $post->category = $request->category;
-                $post->title = $request->title;
-                $post->content = $request->content;
-                $post->featured_image = $new_filename;
-                $post->tags = $request->tags;
-                $post->meta_keywords = $request->meta_keywords;
-                $post->meta_description = $request->meta_description;
-                $post->visibility = $request->visibility;
-                $saved = $post->save();
+            // Upload original
+            $file->move($path, $new_filename);
 
-                if ($saved) {
-                    return response()->json([
-                        'status' => 1,
-                        'msg' => 'New post has been successfully created'
-                    ]);
-                } else {
-                    return response()->json([
-                        'status' => 0,
-                        'msg' => 'Something went wrong!'
-                    ]);
-                }
+            /** Generate resized image and thumbnail start */
+
+            // Thumbnail (250x250)
+            Image::read($path . $new_filename)
+                ->cover(250, 250)
+                ->save($thumb_path . 'thumb_' . $new_filename);
+
+            // Resized Image (512x320)
+            Image::read($path . $new_filename)
+                ->cover(512, 320)
+                ->save($resized_path . 'resized_' . $new_filename);
+
+            /** Generate resized image and thumbnail end */
+
+            $post = new Post();
+            $post->author_id = auth()->id();
+            $post->category = $request->category;
+            $post->title = $request->title;
+            $post->content = $request->content;
+            $post->featured_image = $new_filename;
+            $post->tags = $request->tags;
+            $post->meta_keywords = $request->meta_keywords;
+            $post->meta_description = $request->meta_description;
+            $post->visibility = $request->visibility;
+            $saved = $post->save();
+
+            if ($saved) {
+                return response()->json([
+                    'status' => 1,
+                    'msg' => 'New post has been successfully created'
+                ]);
             } else {
                 return response()->json([
                     'status' => 0,
-                    'msg' => 'Something went wrong when upolading featured image!'
+                    'msg' => 'Something went wrong!'
                 ]);
             }
         }

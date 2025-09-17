@@ -5,7 +5,7 @@ namespace App\Helpers;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class Cmail
+class CMail
 {
     public static function send($config)
     {
@@ -13,8 +13,8 @@ class Cmail
 
         try {
             //Server settings
-            $mail->SMTPDebug = 0;                      
-            $mail->isSMTP();                                            
+            $mail->SMTPDebug = 0;
+            $mail->isSMTP();
             $mail->Host       = config('services.mail.host');
             $mail->SMTPAuth   = true;
             $mail->Username   = config('services.mail.username');
@@ -34,12 +34,11 @@ class Cmail
             $mail->Subject = $config['subject'];
             $mail->Body    = $config['body'];
 
-            if ( !$mail->send() ) {
+            if (!$mail->send()) {
                 return false;
-            }else{
+            } else {
                 return true;
             }
-           
         } catch (Exception $e) {
             return false;
         }
