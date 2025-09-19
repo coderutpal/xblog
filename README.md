@@ -64,10 +64,17 @@ Access the project here: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## ✅ Special Notes:
-- প্রজেক্টের notification system-এর জন্য `toastr.js` CDN যুক্ত করতে হবে। (এই প্রজেক্টে ইতোমধ্যে যুক্ত আছে)
-- ইউজার প্রোফাইল আপডেটের পরে toastr notification কাজ করবে।
-- লগইন সিস্টেম Laravel Breeze বা অন্য কোনো প্যাকেজ দিয়ে ইমপ্লিমেন্ট করা থাকতে পারে। যদি না থাকে, আগে authentication সিস্টেম যোগ করো।
+## 🔌 External Resources / Plugins Used
+    - Croppie/croppieImageUploader → Image crop & upload
+    - Kropify → preview and upload profile picture
+    - toastr.js → Toast notifications
+    - SweetAlert2 → Elegant popups
+    - Bootstrap Tags Input → Input with tags functionality
+    - Intervention Image → Image resizing, thumbnails, manipulation
+    - CKEditor 4 → Rich text editor
+    - elFinder → File manager for CEEditor
+    - more
+
 
 ---
 
