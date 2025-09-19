@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2025 at 06:47 AM
+-- Generation Time: Sep 19, 2025 at 08:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,6 +48,44 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `parent` int(11) NOT NULL DEFAULT 0,
+  `ordering` int(11) NOT NULL DEFAULT 1000,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `parent`, `ordering`, `created_at`, `updated_at`) VALUES
+(1, 'Photoshop', 'photoshop', 1, 1000, '2025-09-19 00:00:36', '2025-09-19 00:00:36'),
+(2, 'Illustrator', 'illustrator', 1, 1000, '2025-09-19 00:05:52', '2025-09-19 00:05:52'),
+(3, 'Affinity', 'affinity', 1, 1000, '2025-09-19 00:07:03', '2025-09-19 00:07:03'),
+(4, 'CorelDraw', 'coreldraw', 1, 1000, '2025-09-19 00:07:16', '2025-09-19 00:07:16'),
+(5, 'Laravel', 'laravel', 3, 1000, '2025-09-19 00:07:29', '2025-09-19 00:07:29'),
+(6, 'CodeIgnator', 'codeignator', 3, 1000, '2025-09-19 00:07:38', '2025-09-19 00:07:38'),
+(7, 'CakePhp', 'cakephp', 3, 1000, '2025-09-19 00:07:44', '2025-09-19 00:07:51'),
+(8, 'VueJS', 'vuejs', 3, 1000, '2025-09-19 00:08:12', '2025-09-19 00:08:12'),
+(9, 'AngularJs', 'angularjs', 3, 1000, '2025-09-19 00:08:29', '2025-09-19 00:08:29'),
+(10, 'NextJs', 'nextjs', 3, 1000, '2025-09-19 00:09:09', '2025-09-19 00:09:09'),
+(11, 'ReactJs', 'reactjs', 3, 1000, '2025-09-19 00:09:34', '2025-09-19 00:09:34'),
+(12, 'React Native', 'react-native', 2, 1000, '2025-09-19 00:09:55', '2025-09-19 00:09:55'),
+(13, 'Flutter', 'flutter', 2, 1000, '2025-09-19 00:10:05', '2025-09-19 00:10:05'),
+(14, 'MS Office', 'ms-office', 4, 1000, '2025-09-19 00:10:23', '2025-09-19 00:10:23'),
+(15, 'MatLab', 'matlab', 4, 1000, '2025-09-19 00:10:57', '2025-09-19 00:10:57'),
+(16, 'Aurduino', 'aurduino', 6, 1000, '2025-09-19 00:11:17', '2025-09-19 00:11:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -60,6 +98,32 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `general_settings`
+--
+
+CREATE TABLE `general_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `site_title` varchar(255) DEFAULT NULL,
+  `site_email` varchar(255) DEFAULT NULL,
+  `site_phone` varchar(255) DEFAULT NULL,
+  `site_meta_keywords` varchar(255) DEFAULT NULL,
+  `site_meta_description` varchar(255) DEFAULT NULL,
+  `site_logo` varchar(255) DEFAULT NULL,
+  `site_favicon` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `general_settings`
+--
+
+INSERT INTO `general_settings` (`id`, `site_title`, `site_email`, `site_phone`, `site_meta_keywords`, `site_meta_description`, `site_logo`, `site_favicon`, `created_at`, `updated_at`) VALUES
+(1, 'Xblog', 'admin@xblog.com', '0987654321', 'Laravel', 'Xblog | Laravel 11 blog website', 'site_logo_68ccf0111ba76.png', 'site_favicon_68ccf00c84680.png', NULL, '2025-09-18 23:54:25');
 
 -- --------------------------------------------------------
 
@@ -113,9 +177,41 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1);
+(17, '0001_01_01_000000_create_users_table', 1),
+(18, '0001_01_01_000001_create_cache_table', 1),
+(19, '0001_01_01_000002_create_jobs_table', 1),
+(20, '2025_07_02_223026_create_user_social_links_table', 1),
+(21, '2025_07_04_063032_create_general_settings_table', 1),
+(22, '2025_07_09_124120_create_parent_categories_table', 1),
+(23, '2025_07_09_124159_create_categories_table', 1),
+(24, '2025_09_03_013634_create_posts_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parent_categories`
+--
+
+CREATE TABLE `parent_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `ordering` int(11) NOT NULL DEFAULT 1000,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `parent_categories`
+--
+
+INSERT INTO `parent_categories` (`id`, `name`, `slug`, `ordering`, `created_at`, `updated_at`) VALUES
+(1, 'Graphics Design', 'graphics-design', 1000, '2025-09-18 23:58:39', '2025-09-18 23:58:39'),
+(2, 'App Development', 'app-development', 1000, '2025-09-18 23:58:52', '2025-09-18 23:58:52'),
+(3, 'Web Development', 'web-development', 1000, '2025-09-18 23:59:06', '2025-09-18 23:59:06'),
+(4, 'Computer Science', 'computer-science', 1000, '2025-09-18 23:59:36', '2025-09-18 23:59:36'),
+(5, 'Data Analysis', 'data-analysis', 1000, '2025-09-18 23:59:49', '2025-09-18 23:59:49'),
+(6, 'Embeded System', 'embeded-system', 1000, '2025-09-19 00:00:07', '2025-09-19 00:00:07');
 
 -- --------------------------------------------------------
 
@@ -128,6 +224,35 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `category` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `featured_image` varchar(255) NOT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `visibility` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `author_id`, `category`, `title`, `slug`, `content`, `featured_image`, `tags`, `meta_keywords`, `meta_description`, `visibility`, `created_at`, `updated_at`) VALUES
+(1, 4, 5, 'Laravel is a php framework', 'laravel-is-a-php-framework', '<p><strong>Lorem ipsum dolor sit amet</strong></p>\n\n<p>consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. <u><em>Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim</em></u>. <span style=\"color:#3498db\"><strong><span style=\"background-color:#f1c40f\">Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci</span></strong><span style=\"background-color:#f1c40f\">.</span></span> Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>\n\n<p>&nbsp;</p>\n\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>\n\n<p>&nbsp;</p>\n\n<ul>\n	<li><strong>Lorem </strong></li>\n	<li><strong>ipsum </strong></li>\n	<li><strong>dolor</strong></li>\n	<li><strong>sit </strong></li>\n	<li><strong>amet</strong></li>\n</ul>\n\n<p>consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>\n\n<p>&nbsp;</p>\n\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>', '68ccf6588ab28_image.png', NULL, 'aliquam, aliquam, aliquam, aliquam', 'aliquam aliquam aliquam aliquam aliquam', 1, '2025-09-19 00:21:14', '2025-09-19 00:21:14');
 
 -- --------------------------------------------------------
 
@@ -149,9 +274,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('AMmXTYpvCKsMTlhf5pITePnQY9HjFxS8qLrV3f89', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZzhpSmpsNTRwbnJkeVZLOUg4MzZZN2NrdUZHQTF6VTFobm5aUmdtVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjU2OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vcHJvZmlsZT90YWI9cGVyc29uYWxfZGV0YWlscyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1751343456),
-('rlNijnFZeAahBGBLV1fSkoSZPlVmTVIEGyS58lUI', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibUU3dlEyQTQwbktaUVE4MjRvMExJSTI4ck9wSTcwSTNjbjFScDlueCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjU2OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vcHJvZmlsZT90YWI9cGVyc29uYWxfZGV0YWlscyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1751295772),
-('SHwQJQb64U3jW1D5KqccCASMWGAsuDRUZK1pTbUY', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiV1ZOeXVQekV3TDVhemZpc2VZRGphS1FwYlREU3I4ODJiV21WOWx1dSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1751286148);
+('AERQPneFuBVjlNxxGAG3wwQWkWFScnmo9uyAMD1D', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaVY5YmNqUDRzYzl5ajVkclNnSDFJMlZNeHE3aVF5cEVjOE5FYlhuMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wb3N0L25ldyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1758262874);
 
 -- --------------------------------------------------------
 
@@ -180,7 +303,34 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `email_verified_at`, `password`, `picture`, `bio`, `type`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Lord Byron M', 'admin@email.com', 'admin', NULL, '$2y$12$d.ZO2912yAlzdGNQohiFp.5IPhptfVkKNL0eoVCXNHb83O59.JRLW', NULL, 'Supper Admin', 'supperAdmin', 'active', NULL, '2025-06-21 22:29:33', '2025-06-30 22:17:35');
+(4, 'Admin', 'admin@xblog.com', 'admin', NULL, '$2y$12$AiiqZecTa665zAisrE.jO.27uMY/6HfbGjNhr/YJQCghTfvSLR/AC', 'IMG68cceef9babec.png', NULL, 'supperAdmin', 'active', NULL, '2025-09-18 23:47:06', '2025-09-18 23:49:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_social_links`
+--
+
+CREATE TABLE `user_social_links` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `facebook_url` varchar(255) DEFAULT NULL,
+  `instagram_url` varchar(255) DEFAULT NULL,
+  `youtube_url` varchar(255) DEFAULT NULL,
+  `linkedin_url` varchar(255) DEFAULT NULL,
+  `twitter_url` varchar(255) DEFAULT NULL,
+  `github_url` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_social_links`
+--
+
+INSERT INTO `user_social_links` (`id`, `user_id`, `facebook_url`, `instagram_url`, `youtube_url`, `linkedin_url`, `twitter_url`, `github_url`, `created_at`, `updated_at`) VALUES
+(1, 3, 'https://www.facebook.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 4, 'https://www.facebook.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -199,11 +349,24 @@ ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `categories_slug_unique` (`slug`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `general_settings`
+--
+ALTER TABLE `general_settings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jobs`
@@ -225,10 +388,24 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `parent_categories`
+--
+ALTER TABLE `parent_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `parent_categories_slug_unique` (`slug`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `posts_slug_unique` (`slug`);
 
 --
 -- Indexes for table `sessions`
@@ -247,14 +424,33 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_username_unique` (`username`);
 
 --
+-- Indexes for table `user_social_links`
+--
+ALTER TABLE `user_social_links`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_social_links_user_id_unique` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `general_settings`
+--
+ALTER TABLE `general_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -266,13 +462,31 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `parent_categories`
+--
+ALTER TABLE `parent_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user_social_links`
+--
+ALTER TABLE `user_social_links`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
