@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('parent')->default(0);
-            $table->integer('odering')->default(1000);
+            $table->integer('ordering')->default(1000);
             $table->timestamps();
         });
     }
