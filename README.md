@@ -1,8 +1,7 @@
 
 # Xblog
 
-Xblog হলো একটি Laravel ভিত্তিক ব্লগিং প্লাটফর্ম যেখানে ইউজার প্রোফাইল আপডেট, ক্যাটাগরি ম্যানেজমেন্ট, পোস্ট ম্যানেজমেন্ট, প্রোডাক্ট ম্যানেজমেন্ট ইত্যাদি রয়েছে।
-
+Xblog is a Laravel-based blogging platform that includes user profile management, category management, post management, product management, and more.
 ---
 
 ## 📂 Project Setup
@@ -10,7 +9,7 @@ Xblog হলো একটি Laravel ভিত্তিক ব্লগিং �
 ### ✅ Requirements:
 - PHP >= 8.0
 - Composer
-- Node.js & NPM (যদি ফ্রন্টএন্ড বিল্ড প্রয়োজন হয়)
+- Node.js & NPM (for frontend build if needed)
 - MySQL Database
 - Laravel 10 (or compatible version)
 
@@ -42,7 +41,7 @@ npm install
 ```bash
 cp .env.example .env
 ```
-> `.env` ফাইলে তোমার লোকাল ডাটাবেস এর নাম, ইউজারনেম, পাসওয়ার্ড ঠিক করে দিও।
+> Update your `.env` file with local database name, username, and password.
 
 ### 6. Generate App Key
 ```bash
@@ -50,47 +49,41 @@ php artisan key:generate
 ```
 
 ### 7. Import Database
-> প্রজেক্টের `database` ফোল্ডারে দেওয়া `xblog.sql` ডাটাবেস ফাইল লোকাল MySQL-এ ইম্পোর্ট করতে হবে।
+> Import the `xblog.sql` file located in the `database` folder into your MySQL database.
 
-### 8. Run Migrations (if needed)
+### 8. Run Migrations
 ```bash
 php artisan migrate
 ```
-(যদি ডাটাবেস ডাম্প দেওয়া থাকে, এই ধাপ প্রয়োজন নাও হতে পারে।)
 
 ### 9. Run Project
 ```bash
 php artisan serve
 ```
-প্রজেক্ট চলবে এই ঠিকানায়: [http://localhost:8000](http://localhost:8000)
+Access the project here: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## ✅ Special Notes:
-- প্রজেক্টের notification system-এর জন্য `toastr.js` CDN যুক্ত করতে হবে। (এই প্রজেক্টে ইতোমধ্যে যুক্ত আছে)
-- ইউজার প্রোফাইল আপডেটের পরে toastr notification কাজ করবে।
-- লগইন সিস্টেম Laravel Breeze বা অন্য কোনো প্যাকেজ দিয়ে ইমপ্লিমেন্ট করা থাকতে পারে। যদি না থাকে, আগে authentication সিস্টেম যোগ করো।
+## 🔌 External Resources / Plugins Used
+    - Croppie/croppieImageUploader → Image crop & upload
+    - Kropify → preview and upload profile picture
+    - toastr.js → Toast notifications
+    - SweetAlert2 → Elegant popups
+    - Bootstrap Tags Input → Input with tags functionality
+    - Intervention Image → Image resizing, thumbnails, manipulation
+    - CKEditor 4 → Rich text editor
+    - elFinder → File manager for CEEditor
+    - more
 
----
-
-## ⚙️ Useful Commands
-
-### যদি কোডে নতুন কিছু যোগ করো:
-```bash
-git add .
-git commit -m "Your update message"
-git push
-```
-
-### যদি CSS/JS compile করতে হয়:
-```bash
-npm run dev
-```
 
 ---
 
 ## 🔥 Project Developed By:
 **Utpal Chandra Das**  
+📧 Email: utpoldas606@gmail.com
+💬 WhatsApp: +880 1933871763
+📘 Facebook: Utpal Chandra Das
+🌍 Fiverr: My Fiverr Profile
 [My Fiverr Profile](https://www.fiverr.com/s/kLjBl4A)
 
 ---
