@@ -197,13 +197,14 @@ class PostController extends Controller
                 ->cover(512, 320)
                 ->save($resized_path . 'resized_' . $new_filename);
 
-            // update db field
+            // ===== Image Update =====
             $post->featured_image = $new_filename;
         }
 
         // ===== OTHER DATA UPDATE =====
         $post->category = $request->category;
         $post->title = $request->title;
+        $post->slug = null;
         $post->content = $request->content;
         $post->tags = $request->tags;
         $post->meta_keywords = $request->meta_keywords;

@@ -26,3 +26,25 @@
     </div>
     @livewire('admin.posts')
 @endsection
+@push('scripts')
+    <script>
+        window.addEventListener('deletePost', function(event) {
+            var id = event.detail[0].id;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatch('confirmDeletePost', [id]);
+                }
+            });
+        });
+    </script>
+@endpush

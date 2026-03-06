@@ -79,7 +79,8 @@
                                 <div class="table-actions">
                                     <a href="{{ route('admin.edit_post', ['id' => $item->id]) }}" data-color="#265ed7"
                                         style="color: rgb(233, 89, 89)"><i class="icon-copy dw dw-edit-2"></i></a>
-                                    <a href="" data-color="#e95959" style="color: rgb(233, 89, 89)"><i
+                                    <a href="javascript:;" wire:click="deletePost({{ $item->id }})"
+                                        data-color="#e95959" style="color: rgb(233, 89, 89)"><i
                                             class="icon-copy dw dw-delete-3"></i></a>
                                 </div>
                             </td>
