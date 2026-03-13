@@ -247,12 +247,18 @@ class Categories extends Component
     {
         $category = Category::findOrFail($id);
 
-        $delete = $category->delete();
-
-        if ($delete) {
-            $this->dispatch('showToastr', type: 'success', message: 'Category item has been deleted!');
+        // Check if category has releted posts
+        if ($category->posts()->count() > 0) {
+            $count = $category->posts()->count();
+            $this->dispatch('showToastr', type: 'error', message: 'This category has (' . $count . ') related posts. Can not be deleted!');
         } else {
-            $this->dispatch('showToastr', type: 'error', message: 'Something went wrong!');
+            $delete = $category->delete();
+
+            if ($delete) {
+                $this->dispatch('showToastr', type: 'success', message: 'Category has been deleted successfully!');
+            } else {
+                $this->dispatch('showToastr', type: 'error', message: 'Something went wrong!');
+            }
         }
     }
 
