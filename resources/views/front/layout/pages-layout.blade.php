@@ -8,6 +8,10 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}"
+        type="image/x-icon">
+    <link rel="shortcut icon" href="/images/site/{{ isset(settings()->site_favicon) ? settings()->site_favicon : '' }}"
+        type="image/x-icon">
 
     <link rel="stylesheet" href="/front/css/modernmag-assets.min.css">
     <link rel="stylesheet" type="text/css" href="/front/css/style.css">
@@ -431,7 +435,8 @@
             <div class="header-banner-place">
                 <div class="container">
                     <a class="navbar-brand" href="#">
-                        <img src="/front/images/logo-black.png" alt="">
+                        <img src="/images/site/{{ isset(settings()->site_logo) ? settings()->site_logo : '' }}"
+                            alt="{{ isset(settings()->site_title) ? settings()->site_title : '' }}">
                         <p>Laravel 11 Blog Newspaper & Magazine</p>
                     </a>
                 </div>
@@ -459,11 +464,12 @@
 
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-widget text-widget">
-                                <h1><a href="index.html"><img src="/front/images/logo.png" alt=""></a>
+                                <h1><a href="/"><img
+                                            src="/images/site/{{ isset(settings()->site_footer_logo) ? settings()->site_footer_logo : '' }}"
+                                            alt="{{ isset(settings()->site_title) ? settings()->site_title : '' }}"></a>
                                 </h1>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p>{{ isset(settings()->site_meta_description) ? settings()->site_meta_description : '' }}
+                                </p>
                                 <ul class="social-icons">
                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>

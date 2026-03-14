@@ -47,8 +47,8 @@
                 height: 100
             },
             size: {
-                width: 412,
-                height: 54
+                width: 206,
+                height: 27
             },
             globalUpdateClass: 'site_logo'
         });
@@ -73,8 +73,8 @@
                 height: 100
             },
             size: {
-                width: 412,
-                height: 54
+                width: 206,
+                height: 27
             },
             globalUpdateClass: 'site_footer_logo'
         });
