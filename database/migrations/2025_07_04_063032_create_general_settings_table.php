@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('site_meta_keywords')->nullable();
             $table->string('site_meta_description')->nullable();
             $table->string('site_logo')->nullable();
+            $table->string('site_footer_logo')->nullable();
             $table->string('site_favicon')->nullable();
             $table->timestamps();
         });

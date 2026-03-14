@@ -99,6 +99,30 @@
                         </div>
                     </div>
                     <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Footer logo</h5>
+                            <div class="mb-2 mt-1" style="max-width:700px">
+                                <img id="preview_site_footer_logo"
+                                    src="{{ asset('images/site') }}/{{ isset(settings()->site_footer_logo) ? settings()->site_footer_logo : '' }}"
+                                    alt="Footer Logo" class="img-thumbnail mt-2 mb-3" style="max-width: 200px;">
+                                <form action="{{ route('admin.update_footer_logo') }}" method="POST"
+                                    enctype="multipart/form-data" id="updateFooterLogoForm">
+                                    @csrf
+                                    <div class="mb-2">
+                                        <input type="file" name="site_footer_logo" id="site_footer_logo"
+                                            class="form-control">
+                                        <span class="text-danger ml-1"></span>
+                                    </div>
+                                    <div id="crop-footer-logo-container" class="mt-3"></div>
+                                    <button type="submit" class="btn btn-primary mt-3"
+                                        id="crop_footer_logo_btn">Change
+                                        Footer Logo</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <h5>Site Favicon</h5>

@@ -9,7 +9,6 @@ Route::get('/', function () {
     return view('front.pages.front-example');
 });
 
-
 /**
  * TESTING ROUTES
  */
@@ -42,6 +41,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::middleware(['onlySupperAdmin'])->group(function () {
                 Route::get('/settings', 'generalSettings')->name('settings');
                 Route::post('/update-logo', 'updateLogo')->name('update_logo');
+                Route::post('/update-footer-logo', 'updateFooterLogo')->name('update_footer_logo');
                 Route::post('/update-favicon', 'updateFavicon')->name('update_favicon');
                 Route::get('/categories', 'categoriesPage')->name('categories');
             });

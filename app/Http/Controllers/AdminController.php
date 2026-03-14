@@ -177,6 +177,61 @@ class AdminController extends Controller
     // }
     // Update logo method using object/form data end [Method2]
 
+
+    // Update footer logo method using "base64 string" Start [Method1]
+    public function updateFooterLogo(Request $request)
+    {
+        $request->validate([
+            'cropped_footer_logo' => 'required|string',
+        ]);
+
+        $settings = GeneralSetting::take(1)->first();
+
+        if (!is_null($settings)) {
+            $data = $request->cropped_footer_logo;
+
+            // Remove base64 header
+            $image = str_replace('data:image/png;base64,', '', $data);
+            $image = str_replace(' ', '+', $image);
+
+            // New File Name
+            $fileName = 'site_footer_logo_' . uniqid() . '.png';
+            $path = 'images/site';
+            $oldFile = $settings->site_footer_logo;
+
+            // Save file to folder
+            $upload = file_put_contents(public_path($path . '/' . $fileName), base64_decode($image));
+
+            if ($upload) {
+                // Delete old file if exists
+                if ($oldFile != null && file_exists(public_path($path . '/' . $oldFile))) {
+                    unlink(public_path($path . '/' . $oldFile));
+                }
+
+                // Update database
+                $settings->update(['site_footer_logo' => $fileName]);
+
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Footer logo has been updated successfully',
+                    'path' => asset($path . '/' . $fileName)
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Something went wrong while uploading the logo!'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Make sure you have updated your general settings form'
+            ]);
+        }
+    }
+    // Update footer logo method using "base64 string" end [Method1]
+
+
     // Update Faviocn method using "base64 string" Start [Method1]
     public function updateFavicon(Request $request)
     {

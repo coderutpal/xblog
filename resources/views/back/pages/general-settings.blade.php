@@ -38,21 +38,47 @@
             csrfToken: document.querySelector('meta[name="csrf-token"]')?.content || '',
             croppedImageFieldName: 'cropped_logo',
             viewport: {
-                width: 300,
-                height: 150,
+                width: 412,
+                height: 54,
                 type: 'square'
             },
             boundary: {
-                width: 400,
-                height: 300
+                width: 600,
+                height: 100
             },
             size: {
-                width: 514,
-                height: 200
+                width: 412,
+                height: 54
             },
             globalUpdateClass: 'site_logo'
         });
         // === Logo Upload Init End ===
+
+        // === Footer Logo Upload Init Start ===
+        initCroppieUploader({
+            fileInputSelector: '#site_footer_logo',
+            cropContainerSelector: '#crop-footer-logo-container',
+            previewSelector: '#preview_site_footer_logo',
+            formSelector: '#updateFooterLogoForm',
+            ajaxUrl: '{{ route('admin.update_footer_logo') }}',
+            csrfToken: document.querySelector('meta[name="csrf-token"]')?.content || '',
+            croppedImageFieldName: 'cropped_footer_logo',
+            viewport: {
+                width: 412,
+                height: 54,
+                type: 'rectangle'
+            },
+            boundary: {
+                width: 610,
+                height: 100
+            },
+            size: {
+                width: 412,
+                height: 54
+            },
+            globalUpdateClass: 'site_footer_logo'
+        });
+        // === Footer Logo Upload Init End ===
 
         // === Favicon Upload Init ===
         initCroppieUploader({

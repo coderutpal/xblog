@@ -16,7 +16,7 @@ class Settings extends Component
     public  $site_title, $site_email, $site_phone, $site_meta_keywords, $site_meta_description;
 
     // Logo and Favicon form properties
-    public  $site_logo, $site_favicon;
+    public  $site_logo, $site_footer_logo, $site_favicon;
 
     public function selectTab($tab)
     {

@@ -15,6 +15,7 @@ class GeneralSetting extends Model
         'site_meta_keywords',
         'site_meta_description',
         'site_logo',
-        'site_favicon',
+        'site_footer_logo',
+        'site_favicon'
     ];
 }
