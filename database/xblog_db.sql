@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2025 at 08:30 AM
+-- Generation Time: Mar 15, 2026 at 07:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,22 +66,23 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `parent`, `ordering`, `created_at`, `updated_at`) VALUES
-(1, 'Photoshop', 'photoshop', 1, 1000, '2025-09-19 00:00:36', '2025-09-19 00:00:36'),
-(2, 'Illustrator', 'illustrator', 1, 1000, '2025-09-19 00:05:52', '2025-09-19 00:05:52'),
-(3, 'Affinity', 'affinity', 1, 1000, '2025-09-19 00:07:03', '2025-09-19 00:07:03'),
-(4, 'CorelDraw', 'coreldraw', 1, 1000, '2025-09-19 00:07:16', '2025-09-19 00:07:16'),
-(5, 'Laravel', 'laravel', 3, 1000, '2025-09-19 00:07:29', '2025-09-19 00:07:29'),
-(6, 'CodeIgnator', 'codeignator', 3, 1000, '2025-09-19 00:07:38', '2025-09-19 00:07:38'),
-(7, 'CakePhp', 'cakephp', 3, 1000, '2025-09-19 00:07:44', '2025-09-19 00:07:51'),
-(8, 'VueJS', 'vuejs', 3, 1000, '2025-09-19 00:08:12', '2025-09-19 00:08:12'),
-(9, 'AngularJs', 'angularjs', 3, 1000, '2025-09-19 00:08:29', '2025-09-19 00:08:29'),
-(10, 'NextJs', 'nextjs', 3, 1000, '2025-09-19 00:09:09', '2025-09-19 00:09:09'),
+(1, 'Photoshop', 'photoshop', 1, 1, '2025-09-19 00:00:36', '2026-01-18 22:07:56'),
+(2, 'Illustrator', 'illustrator', 1, 2, '2025-09-19 00:05:52', '2026-01-18 22:07:56'),
+(3, 'Affinity', 'affinity', 1, 3, '2025-09-19 00:07:03', '2026-01-18 22:07:56'),
+(4, 'CorelDraw', 'coreldraw', 1, 4, '2025-09-19 00:07:16', '2026-01-18 22:07:56'),
+(6, 'CodeIgnator', 'codeignator', 3, 6, '2025-09-19 00:07:38', '2026-01-18 22:07:56'),
+(7, 'CakePhp', 'cakephp', 3, 7, '2025-09-19 00:07:44', '2026-01-18 22:07:56'),
+(8, 'VueJS', 'vuejs', 3, 8, '2025-09-19 00:08:12', '2026-01-18 22:07:56'),
+(9, 'AngularJs', 'angularjs', 3, 10, '2025-09-19 00:08:29', '2026-01-18 22:07:56'),
+(10, 'NextJs', 'nextjs', 3, 9, '2025-09-19 00:09:09', '2026-01-18 22:07:56'),
 (11, 'ReactJs', 'reactjs', 3, 1000, '2025-09-19 00:09:34', '2025-09-19 00:09:34'),
-(12, 'React Native', 'react-native', 2, 1000, '2025-09-19 00:09:55', '2025-09-19 00:09:55'),
-(13, 'Flutter', 'flutter', 2, 1000, '2025-09-19 00:10:05', '2025-09-19 00:10:05'),
-(14, 'MS Office', 'ms-office', 4, 1000, '2025-09-19 00:10:23', '2025-09-19 00:10:23'),
-(15, 'MatLab', 'matlab', 4, 1000, '2025-09-19 00:10:57', '2025-09-19 00:10:57'),
-(16, 'Aurduino', 'aurduino', 6, 1000, '2025-09-19 00:11:17', '2025-09-19 00:11:17');
+(12, 'React Native', 'react-native', 2, 2, '2025-09-19 00:09:55', '2026-03-05 21:57:29'),
+(13, 'Flutter', 'flutter', 2, 3, '2025-09-19 00:10:05', '2026-03-05 21:57:29'),
+(14, 'MS Office', 'ms-office', 4, 4, '2025-09-19 00:10:23', '2026-03-05 21:57:29'),
+(15, 'MatLab', 'matlab', 4, 5, '2025-09-19 00:10:57', '2026-03-05 21:57:29'),
+(16, 'Aurduino', 'aurduino', 6, 6, '2025-09-19 00:11:17', '2026-03-05 21:57:29'),
+(17, 'WordPress', 'wordpress', 3, 7, '2026-02-21 01:02:58', '2026-03-05 21:57:29'),
+(18, 'Laravel', 'laravel', 3, 1, '2026-03-05 21:57:19', '2026-03-05 21:57:29');
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,7 @@ CREATE TABLE `general_settings` (
   `site_meta_keywords` varchar(255) DEFAULT NULL,
   `site_meta_description` varchar(255) DEFAULT NULL,
   `site_logo` varchar(255) DEFAULT NULL,
+  `site_footer_logo` varchar(255) DEFAULT NULL,
   `site_favicon` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -122,8 +124,8 @@ CREATE TABLE `general_settings` (
 -- Dumping data for table `general_settings`
 --
 
-INSERT INTO `general_settings` (`id`, `site_title`, `site_email`, `site_phone`, `site_meta_keywords`, `site_meta_description`, `site_logo`, `site_favicon`, `created_at`, `updated_at`) VALUES
-(1, 'Xblog', 'admin@xblog.com', '0987654321', 'Laravel', 'Xblog | Laravel 11 blog website', 'site_logo_68ccf0111ba76.png', 'site_favicon_68ccf00c84680.png', NULL, '2025-09-18 23:54:25');
+INSERT INTO `general_settings` (`id`, `site_title`, `site_email`, `site_phone`, `site_meta_keywords`, `site_meta_description`, `site_logo`, `site_footer_logo`, `site_favicon`, `created_at`, `updated_at`) VALUES
+(1, 'Ushan Blog', 'admin@xblog.com', '0987654321', 'Laravel', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum oben.', 'site_logo_69b57ebd0833d.png', 'site_footer_logo_69b57ec98d454.png', 'site_favicon_69b5051fbfa94.png', NULL, '2026-03-14 09:31:43');
 
 -- --------------------------------------------------------
 
@@ -184,7 +186,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (21, '2025_07_04_063032_create_general_settings_table', 1),
 (22, '2025_07_09_124120_create_parent_categories_table', 1),
 (23, '2025_07_09_124159_create_categories_table', 1),
-(24, '2025_09_03_013634_create_posts_table', 1);
+(24, '2025_09_03_013634_create_posts_table', 1),
+(25, '2026_03_14_072351_add_footer_logo_to_general_settings_table', 2),
+(26, '2026_03_14_075615_add_site_footer_logo_to_general_settings_table', 3);
 
 -- --------------------------------------------------------
 
@@ -252,7 +256,13 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `author_id`, `category`, `title`, `slug`, `content`, `featured_image`, `tags`, `meta_keywords`, `meta_description`, `visibility`, `created_at`, `updated_at`) VALUES
-(1, 4, 5, 'Laravel is a php framework', 'laravel-is-a-php-framework', '<p><strong>Lorem ipsum dolor sit amet</strong></p>\n\n<p>consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. <u><em>Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim</em></u>. <span style=\"color:#3498db\"><strong><span style=\"background-color:#f1c40f\">Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci</span></strong><span style=\"background-color:#f1c40f\">.</span></span> Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>\n\n<p>&nbsp;</p>\n\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>\n\n<p>&nbsp;</p>\n\n<ul>\n	<li><strong>Lorem </strong></li>\n	<li><strong>ipsum </strong></li>\n	<li><strong>dolor</strong></li>\n	<li><strong>sit </strong></li>\n	<li><strong>amet</strong></li>\n</ul>\n\n<p>consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>\n\n<p>&nbsp;</p>\n\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.</p>', '68ccf6588ab28_image.png', NULL, 'aliquam, aliquam, aliquam, aliquam', 'aliquam aliquam aliquam aliquam aliquam', 1, '2025-09-19 00:21:14', '2025-09-19 00:21:14');
+(3, 4, 4, 'Laravel isterlo vonmei dserrt', 'laravel-isterlo-vonmei-dserrt', '<p>Hello bong song</p>', '696daf1583f03_Green Modern Discussion Topic Youtube Thumbnail.png', 'Heello, ksdhjkas,jksdfhsl', 'Laracvel, de, meta', 'nld,mkgndofi l,djs\'dfj sd;lfks esdf;asdljf ;\'sa', 1, '2026-01-18 22:12:10', '2026-01-18 22:12:10'),
+(4, 4, 6, 'How to be a boss of Codignator', 'how-to-be-a-boss-of-codignator', '<p><strong>How to be a boss of Codignator&nbsp;</strong></p>', '69a8fcf75bdb7_install-wordpress-and-customize-wordpress-theme.jpg', 'Codignator', 'Boss of Codignator', 'Codignator', 0, '2026-01-18 22:15:39', '2026-03-04 21:48:07'),
+(5, 4, 13, 'Flutter App development career', 'flutter-app-development-career', '<p>Updated</p>\r\n\r\n<p><img alt=\"\" src=\"http://127.0.0.1:8000/ufiles//Hacker.webp\" style=\"height:200px; width:300px\" /></p>\r\n\r\n<p><img alt=\"\" src=\"http://127.0.0.1:8000/ufiles//Web%20Development.jpg\" style=\"height:300px; width:533px\" /></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>updated</p>', '69a9029e95f40_PHP Web Developer  PHP Developer  PHP Expert  PHP Programmer  MySQL PHP.jpg', 'Flutter', 'Flutter App development career', 'Flutter App development career', 0, '2026-01-18 23:16:16', '2026-03-04 22:12:14'),
+(6, 5, 17, 'Top 5  WordPress free theme for E-commerce Website', 'top-5-wordpress-free-theme-for-e-commerce-website', '<p><strong>Top 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5</strong></p>\r\n\r\n<p>&nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce WebsiteTop 5 &nbsp;WordPress free theme for E-commerce Website</p>', '699958800af7a_image-4.png', 'WordPress,Website', 'Top 5,  WordPress, ,theme, E-commerce, Website', 'Top 5  WordPress free theme for E-commerce WebsiteTop 5  WordPress free theme for E-commerce WebsiteTop 5  WordPress free theme for E-commerce WebsiteTop 5  WordPress free theme for E-commerce WebsiteTop 5  WordPress free theme for E-commerce WebsiteTop 5  WordPress free theme for E-commerce Website', 1, '2026-02-21 01:02:28', '2026-02-21 01:02:28'),
+(7, 4, 4, 'CorelDraw Graphics Design Works', 'coreldraw-graphics-design-works', '<p>CorelDraw Graphics Design Meme posting</p>', '69a8fc84df15f_image-5.png', 'CorelDraw,Graphics', 'CorelDraw, Graphics, Design, Works,', 'CorelDraw Graphics Design WorksCorelDraw CorelDraw Graphics Design Works Graphics Design Works CorelDraw Graphics Design Works CorelDraw Graphics Design Works CorelDraw Graphics Design WorksCorelDraw Graphics Design WorksCorelDraw Graphics Design WorksCorelDraw Graphics Design WorksCorelDraw Graphics Design WorksCorelDraw Graphics Design WorksCorelDraw Graphics Design WorksCorelDraw Graphics Design Works', 1, '2026-03-04 21:38:27', '2026-03-04 21:46:13'),
+(8, 4, 4, 'CorelDraw content Is moyeb Karl Mearn', 'coreldraw-content-is-moyeb-karl-mearn', '<p>CorelDraw content Is moyeb Karl</p>', '69a9024a9f729_Ramadan-Card-1441_2.jpg', 'Ajana, Kuyab', 'CorelDraw, content, Is, moyeb, Karl', 'CorelDraw content Is moyeb Karl', 1, '2026-03-04 21:38:42', '2026-03-04 22:17:30'),
+(9, 4, 16, 'Aurdunio  lain Lase junioed', 'aurdunio-lain-lase-junioed', '<p>Aurdunio &nbsp;lain Lase junioed</p>', '69a901b9b8c30_shopping-bag-logo-design-shopping-bag-online-shop-sale-logo-design-template_852937-2388.jpg', 'Aurdunio', 'Aurdunio  lain Lase junioed', 'Aurdunio  lain Lase junioed', 1, '2026-03-04 22:06:48', '2026-03-04 22:08:26');
 
 -- --------------------------------------------------------
 
@@ -274,7 +284,15 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('AERQPneFuBVjlNxxGAG3wwQWkWFScnmo9uyAMD1D', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaVY5YmNqUDRzYzl5ajVkclNnSDFJMlZNeHE3aVF5cEVjOE5FYlhuMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wb3N0L25ldyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1758262874);
+('A9VbnW16fgorNln0SplbXaukniUkJEKdQ7gKQhUe', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaUlMWVFZWXQ5YW5CWFpUWFZ0a2xWS1NkQ2VHOTJnUjhjT3ZLcGVHYyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo1NzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL3NldHRpbmdzP3RhYj1nZW5lcmFsX3NldHRpbmdzIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcm9maWxlIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1773502825),
+('ALZbEPnmbJSvCfjf55t9wNumYehIgPY1csUHhsVf', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaDdPZjBtWnFRZ1JqTjJ3TDdTTjVWMGJkbktBb01FaVRsQ3dFMVBOdCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1773427183),
+('G0IxFVtI27pcDptScmwzrZkWrlz6mJ4XAEQR0QGp', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUjRRTmt2OGdWSWFLQkRSMk53ZHJmVDJMa1hKTENJall5c3M4STZhTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vZGFzaGJvYXJkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1772684253),
+('hZu68ekkwuGLgPSfkpaAFPx4KPag7uS574DyraMh', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibmVUNWVQUEJjWkMydFg2bXE5c3RhV3J1Y2QyWllZMnNUU2pIUExVdCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMzOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vcG9zdHMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1772769493),
+('JW6Qa2w50yzoy8saWiTIosa6dM8eR296EnlXzbVP', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUlhFWEZUZFBFQmVQVWUxRjUxOUloc2NTU1pLOGRCWGhDS1hGZmRuSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1773460015),
+('xl1VoqJQaqgFkciI6pzSP1q561oIYbe7uf672Ybb', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYXVkQUU1bXp2dGJlSFc5RzA4MUNWOGVCQTR4WlJEVHZMcGxDeklMYSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vZGFzaGJvYXJkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1773392971),
+('YKhSsPskCyLeOT2rjLWKdyosoUZPKHVqIeCOZmah', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMEFsVThBWWROUFJKRFlsenRhSjFka0phbXV4MUZQMjl1RGJlUWRtdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1773472237),
+('yl6nyuLsePEnmIQTd2lFKcjW9KKnbVl0bR1X9QMy', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZWdMM3hWckxVU1hJdU5HczlONFlTdnpTU0c1RGFaVEJVelpNSUNNTyI7czo0OiJmYWlsIjtzOjY5OiJZb3UgbXVzdCBiZSBsb2dnZWQgaW4gdG8gYWNjZXNzIGFkbWluIGFyZWEuIFBsZWFzZSBsb2dpbiB0byBjb250aW51ZS4iO3M6NjoiX2ZsYXNoIjthOjI6e3M6MzoibmV3IjthOjA6e31zOjM6Im9sZCI7YToxOntpOjA7czo0OiJmYWlsIjt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jYXRlZ29yaWVzIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jYXRlZ29yaWVzIjt9fQ==', 1773418340),
+('Z9ZdofE5vuT1KqtAcq7vdO51T87NKaWUa3kWv6eJ', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaFVrYXZ6Z2NmaXVGR3ZzbGcwTEZWNXdkRldacVh3dVpXdTVVMmVmcyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vZGFzaGJvYXJkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1773557080);
 
 -- --------------------------------------------------------
 
@@ -303,7 +321,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `email_verified_at`, `password`, `picture`, `bio`, `type`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin', 'admin@xblog.com', 'admin', NULL, '$2y$12$AiiqZecTa665zAisrE.jO.27uMY/6HfbGjNhr/YJQCghTfvSLR/AC', 'IMG68cceef9babec.png', NULL, 'supperAdmin', 'active', NULL, '2025-09-18 23:47:06', '2025-09-18 23:49:45');
+(4, 'Utpal [Supper Admin]', 'admin@xblog.com', 'admin', NULL, '$2y$12$AiiqZecTa665zAisrE.jO.27uMY/6HfbGjNhr/YJQCghTfvSLR/AC', 'IMG68cd0657b1fa0.png', NULL, 'supperAdmin', 'active', NULL, '2025-09-18 23:47:06', '2026-02-23 09:50:52'),
+(5, 'Shiuly Rani', 'shiuly@xblog.com', 'shiuly', NULL, '$2y$12$AiiqZecTa665zAisrE.jO.27uMY/6HfbGjNhr/YJQCghTfvSLR/AC', '', NULL, 'admin', 'active', NULL, '2025-09-18 23:47:06', '2026-01-19 08:30:01');
 
 -- --------------------------------------------------------
 
@@ -438,7 +457,7 @@ ALTER TABLE `user_social_links`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -462,7 +481,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `parent_categories`
@@ -474,13 +493,13 @@ ALTER TABLE `parent_categories`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_social_links`
